@@ -1,0 +1,95 @@
+<div class="list row">
+
+    <!-- <div class="col-md-6">
+      <h4>Your To-do List</h4>
+      <ul class="list-group">
+        <div cdkDropList (cdkDropListDropped)="drop($event)" >
+        
+         <li 
+         cdkDrag
+          class="list-group-item"
+          *ngFor="let tutorial of todo; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveTutorial(tutorial, i)">
+          {{ tutorial.title }}<br>
+          
+          
+        </li>
+      </div>
+        
+      </ul>
+    </div> -->
+ 
+
+
+
+<!-- 
+  <div class="list row">
+  <div class="col-md-6">
+      <h4>Done </h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let d of done; let dt = index">
+          {{ d.title }}<br>
+          </li>
+        </ul>
+  </div> -->
+
+
+
+
+  <div class="example-container">
+    <h2>Your To-do's</h2>
+  
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+      (cdkDropListDropped)="updatePublished(false)">
+      <div class="example-box"  
+      *ngFor="let tutorial of todo; let i = index"
+      [class.active]="i == currentIndex"
+      (click)="setActiveTutorial(tutorial, i)" cdkDrag>{{ tutorial.title }}</div>
+    </div>
+  </div>
+  
+  
+  <div class="example-container">
+    <h2>Done</h2>
+  
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-list-done"
+      (cdkDropListDropped)="drop($event)"
+      (cdkDropListDropped)="updatePublished(true)">
+      <div class="example-box" 
+      *ngFor="let d of done; let dt = index"  
+      [class.active]="dt == currentIndex"
+      (click)="setActiveTutorial(d, dt)"  cdkDrag> {{ d.title }}</div>
+    </div>
+    
+    
+
+    <div class="example-box">
+      <app-todo-details
+        [viewMode]="true"
+        [currentTutorial]="currentTutorial"
+      ></app-todo-details>
+    </div>
+  
+  </div>
+  </div>
+ 
+
+  
+
+  
+
+  
