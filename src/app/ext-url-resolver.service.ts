@@ -11,7 +11,7 @@ export class ExtUrlResolverService implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<any>
   {
-    window.location.href=route.queryParamMap.get('url');
+     window.location.href=route.queryParamMap.get('url');
     return of(null);
   }
 }

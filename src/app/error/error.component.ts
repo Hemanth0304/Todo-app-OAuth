@@ -10,7 +10,7 @@ export class ErrorComponent implements OnInit {
 
   constructor(private ErrorServ:ErrorNotificationService,private zone:NgZone) { }
 
-  error:string;
+  error!: string;
 
   ngOnInit() {
     this.ErrorServ.returnAsObservable().subscribe(err=>{

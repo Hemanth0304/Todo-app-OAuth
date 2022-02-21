@@ -8,12 +8,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  AuthUrl:string;
+  AuthUrl!: string;
 
   constructor(private serv:OAuthService,private router:Router) { }
   ngOnInit() {
-    this.serv.GetAuthPage().subscribe(data=>this.AuthUrl=data["authUrl"],err=>{console.log(err)});
+    this.serv.GetAuthPage().subscribe({ next: data=>this.AuthUrl=data["authUrl"],error:  err=>{console.log(err)}});
 }
+
 
   login()
   {

@@ -20,7 +20,7 @@ export class RedirectComponent implements OnInit {
         //console.log(data);
         localStorage.setItem('Token',data['access_token'])
         
-        this.router.navigate(['/dashboard']),err=>{console.log(err)}}); 
+        this.router.navigate(['/todos']),err=>{console.log(err)}}); 
 
   }
 

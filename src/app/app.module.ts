@@ -23,7 +23,12 @@ import { NoSuchComponent } from './no-such/no-such.component';
     AppComponent,
     AddTodoComponent,
     TodoDetailsComponent,
-    TodoListComponent
+    TodoListComponent,  DashboardComponent,
+    LoginComponent,
+    GitAuthComponent,
+    RedirectComponent,
+    ErrorComponent,
+    NoSuchComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,13 +36,8 @@ import { NoSuchComponent } from './no-such/no-such.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DragDropModule,
-    DashboardComponent,
-    LoginComponent,
-    GitAuthComponent,
-    RedirectComponent,
-    ErrorComponent,
-    NoSuchComponent,
+    DragDropModule
+  
   ],
   providers: [{provide:HTTP_INTERCEPTORS,
     useClass:ErrorHandlingInterceptorService,

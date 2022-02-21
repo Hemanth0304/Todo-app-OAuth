@@ -11,7 +11,7 @@ export class ErrorNotificationService {
   private sub=new BehaviorSubject<string>("");
 
 
-  notify(message)
+  notify(message: string)
   {
 this.sub.next(message);
   }

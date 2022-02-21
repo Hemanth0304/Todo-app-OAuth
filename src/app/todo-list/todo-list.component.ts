@@ -1,6 +1,8 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Tutorial } from '../models/tutorial.model';
+import { OAuthService } from '../oauth.service';
 import { TodoServiceService } from '../service/todo-service.service';
 
 @Component({
@@ -17,16 +19,18 @@ export class TodoListComponent implements OnInit {
 
   done:any;
   todo:any;
+  username: any;
 
 
 
 
 
-  constructor( private todoservice : TodoServiceService) { }
+  constructor( private active:ActivatedRoute,private serv:OAuthService,private todoservice : TodoServiceService) { }
 
   ngOnInit(): void {
     this.retrieveTutorials();
     this.retrieveDoneTasks();
+    this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
   }
 
   retrieveTutorials(): void {

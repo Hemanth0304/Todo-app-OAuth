@@ -11,10 +11,10 @@ export class DashboardComponent implements OnInit {
 
   constructor(private active:ActivatedRoute,private serv:OAuthService,private router:Router) { }
 
-  username:string;
+  username!: string;
 
   ngOnInit() {
-      this.serv.getUserDetails(localStorage.getItem('Token')).subscribe(data=>this.username=data["login"],err=>{console.log(err)});
+      this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
   }
 
 logout()
