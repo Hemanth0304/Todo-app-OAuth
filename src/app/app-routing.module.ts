@@ -8,10 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { NoSuchComponent } from './no-such/no-such.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
+// import { TodoListComponent } from './todo-list/todo-list.component';
 
 const routes: Routes = [ 
-{ path:'todos', component: TodoListComponent},
+
+{ path:'todos', loadChildren:()=> import('./todo-list/todo-list.module').then(m=>m.TodoListModule) 
+
+},
 { path:'todo/:id', component: TodoDetailsComponent},
 { path:'add', component: AddTodoComponent},
 
