@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddTodoComponent } from './add-todo/add-todo.component';
+import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExtUrlResolverService } from './ext-url-resolver.service';
 import { GitAuthComponent } from './git-auth/git-auth.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NoSuchComponent } from './no-such/no-such.component';
 import { RedirectComponent } from './redirect/redirect.component';
@@ -12,14 +14,17 @@ import { TodoDetailsComponent } from './todo-details/todo-details.component';
 
 const routes: Routes = [ 
 
-{ path:'todos', loadChildren:()=> import('./todo-list/todo-list.module').then(m=>m.TodoListModule) 
+//Lazy Loading Path 
+{ path:'todos', loadChildren:()=> import('./todo-list/todo-list.module').then(m=>m.TodoListModule), 
+canActivate:[AuthGuard]
 
 },
 { path:'todo/:id', component: TodoDetailsComponent},
 { path:'add', component: AddTodoComponent},
+{ path: '', component:HomeComponent},
 
 {
-  path:"",
+  path:"login",
   pathMatch:"full",
   redirectTo:'login'
 },
@@ -45,7 +50,11 @@ component:RedirectComponent
 {
 path:'**',
 component:NoSuchComponent
-}
+},
+
+
+
+
 
 
 ];

@@ -17,6 +17,8 @@ import { RedirectComponent } from './redirect/redirect.component';
 import { ErrorComponent } from './error/error.component';
 import { ErrorHandlingInterceptorService } from './error-handling-interceptor.service';
 import { NoSuchComponent } from './no-such/no-such.component';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { NoSuchComponent } from './no-such/no-such.component';
     RedirectComponent,
     ErrorComponent,
     NoSuchComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { NoSuchComponent } from './no-such/no-such.component';
   ],
   providers: [{provide:HTTP_INTERCEPTORS,
     useClass:ErrorHandlingInterceptorService,
-    multi:true}],
+    multi:true},AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

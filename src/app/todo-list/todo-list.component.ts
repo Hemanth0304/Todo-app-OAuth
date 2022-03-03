@@ -1,9 +1,10 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+
 import { Tutorial } from '../models/tutorial.model';
 import { OAuthService } from '../oauth.service';
 import { TodoServiceService } from '../service/todo-service.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -20,18 +21,38 @@ export class TodoListComponent implements OnInit {
   done:any;
   todo:any;
   username: any;
+  token= localStorage.getItem('Token')
 
 
 
 
 
-  constructor( private active:ActivatedRoute,private serv:OAuthService,private todoservice : TodoServiceService) { }
+
+  constructor( private active:ActivatedRoute,private serv:OAuthService,private todoservice : TodoServiceService,private router:Router) { }
 
   ngOnInit(): void {
+    if(!this.token){
+
+      alert('You are not a Logged In user..... Please Login To Continue')
+
+     
+
+    }
     this.retrieveTutorials();
     this.retrieveDoneTasks();
     this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
   }
+
+
+  logout()
+{
+  localStorage.clear();
+  this.serv.logout().subscribe(data=>this.router.navigate(['/login']),err=>{console.log( err)});
+
+}
+add(){
+  this.router.navigate(['/add'])
+}
 
   retrieveTutorials(): void {
     this.todoservice.getAll()
@@ -145,19 +166,7 @@ export class TodoListComponent implements OnInit {
   }
 
 
-  // searchTitle(): void {
-  //   this.currentTutorial = {};
-  //   this.currentIndex = -1;
 
-  //   this.todoservice.findByTitle(this.title)
-  //     .subscribe({
-  //       next: (data) => {
-  //         this.tutorials = data;
-  //         console.log(data);
-  //       },
-  //       error: (e) => console.error(e)
-  //     });
-  // }
 
 }
 
