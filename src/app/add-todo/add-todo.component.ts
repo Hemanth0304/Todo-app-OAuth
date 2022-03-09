@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Tutorial } from '../models/tutorial.model';
 import { TodoServiceService } from '../service/todo-service.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
+import { canComponentLeave } from '../unsaved-form.guard';
+
 
 @Component({
   selector: 'app-add-todo',
@@ -9,25 +12,39 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./add-todo.component.css']
 })
 
-export class AddTodoComponent implements OnInit {
+export class AddTodoComponent implements OnInit,canComponentLeave  {
+ 
   today: Date = new Date();
   tutorial: Tutorial = {
-    title: '',
+    // title: '',
     description: '',
     today:this.today,
     Status: false
   };
 
+  title:FormControl = new FormControl();
+
 
   submitted = false;
 formdeta: any;
 todoform:any;
+
+//CanDeactivate 
+canLeave():boolean{
+  if(this.todoform.dirty)
+  {
+    return window.confirm('you have unsaved changes,Do you still want to continue ?')
+  }
+  return true;
+}
+  
  
   
 
-  constructor( private formBuilder: FormBuilder, private todoservice: TodoServiceService) { }
+  constructor( private formBuilder: FormBuilder, private todoservice: TodoServiceService,private router:Router) { }
 
   ngOnInit(): void {
+
      this.todoform = this.formBuilder.group({
       title:['',Validators.required],
       description:['',Validators.required],
@@ -40,6 +57,11 @@ todoform:any;
  
   get f() {
     return this.todoform.controls;
+  }
+
+  logout()
+  {
+this.router.navigate(['/']);
   }
 
   
@@ -74,7 +96,7 @@ todoform:any;
 newTutorial(): void {
   this.submitted = false;
   this.tutorial = {
-    title: '',
+    // title: '',
     description: '',
     Status: false
   };

@@ -19,6 +19,7 @@ import { ErrorHandlingInterceptorService } from './error-handling-interceptor.se
 import { NoSuchComponent } from './no-such/no-such.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth.guard';
+import { UnsavedFormGuard } from './unsaved-form.guard';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { AuthGuard } from './auth.guard';
   ],
   providers: [{provide:HTTP_INTERCEPTORS,
     useClass:ErrorHandlingInterceptorService,
-    multi:true},AuthGuard],
+    multi:true},AuthGuard, UnsavedFormGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

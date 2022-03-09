@@ -2,7 +2,7 @@
   <a href="#default" class="logo">TODO APP</a>
   <div class="header-right">
     
-    <button type="button" class="btn btn-danger" >Logout</button>
+    <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
    
    
  
@@ -11,29 +11,16 @@
 
 <div class="form" style="padding: 10px;">
 
-<form [formGroup]="todoform" (ngSubmit)="onSubmit()">
+<form [formGroup]="todoform"  (ngSubmit)="onSubmit()">
   <div>
   
     <div class="submit-form">
       <div *ngIf="!submitted">
 
-        <!-- <div class="form-group">
-          <label for="title">Title</label>
-          <input
-            type="text"
-            class="form-control"
-            id="title"
-        
-            formControlName="title"
-          />
-        
-        </div> -->
-
-          <!-- required
-          [(ngModel)]="tutorial.title" -->
-
           <div class="form-group col-5" style="width: 400px;">
             <label> Title*</label>
+
+
             <input 
             style="border-radius: 20px;"
               type="text"
@@ -41,6 +28,7 @@
               class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
             />
+
             <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
               <div *ngIf="f.title.errors.required">
               Title is Required

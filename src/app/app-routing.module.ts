@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { NoSuchComponent } from './no-such/no-such.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
+import { UnsavedFormGuard } from './unsaved-form.guard';
 // import { TodoListComponent } from './todo-list/todo-list.component';
 
 const routes: Routes = [ 
@@ -20,7 +21,10 @@ canActivate:[AuthGuard]
 
 },
 { path:'todo/:id', component: TodoDetailsComponent},
-{ path:'add', component: AddTodoComponent},
+
+{ path:'add',  canDeactivate:[UnsavedFormGuard],component: AddTodoComponent},
+
+
 { path: '', component:HomeComponent},
 
 {
