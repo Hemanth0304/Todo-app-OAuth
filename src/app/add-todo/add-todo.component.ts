@@ -4,6 +4,7 @@ import { TodoServiceService } from '../service/todo-service.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { canComponentLeave } from '../unsaved-form.guard';
+import { SaveData } from '../save.interface';
 
 
 @Component({
@@ -12,36 +13,54 @@ import { canComponentLeave } from '../unsaved-form.guard';
   styleUrls: ['./add-todo.component.css']
 })
 
-export class AddTodoComponent implements OnInit,canComponentLeave  {
+export class AddTodoComponent implements OnInit,canComponentLeave, SaveData {
  
   today: Date = new Date();
   tutorial: Tutorial = {
-    // title: '',
+     title: '',
     description: '',
     today:this.today,
     Status: false
   };
 
-  title:FormControl = new FormControl();
+  t:FormControl = new FormControl();
 
-
-  submitted = false;
-formdeta: any;
-todoform:any;
-
-//CanDeactivate 
+  //CanDeactivate 
 canLeave():boolean{
   if(this.todoform.dirty)
   {
-    return window.confirm('you have unsaved changes,Do you still want to continue ?')
+    return window.confirm('you have unsaved changes,Do you still want to continue ?');
   }
-  return true;
+  else{
+    if(!this.todoform.dirty){
+      return window.confirm('you have unsaved changes ?');
+    }
+    
+    return true; 
+
+  }
+  
 }
+
+
+
+
+
+
+submitted = false;
+formdeta: any;
+todoform:any;
+
+
   
  
   
 
   constructor( private formBuilder: FormBuilder, private todoservice: TodoServiceService,private router:Router) { }
+  
+  isDataSaved(): Boolean {
+  return !this.todoform.dirty;
+  }
 
   ngOnInit(): void {
 
@@ -68,16 +87,7 @@ this.router.navigate(['/']);
 
 
   onSubmit(): void {
-
-   
-
     
-    // const data = {
-    //   title: this.tutorial.title,
-    //   description: this.tutorial.description,
-    //   today:this.tutorial.today
-      
-    // };
     
   
     this.todoservice.create(this.todoform.value)
@@ -87,10 +97,10 @@ this.router.navigate(['/']);
         this.submitted = true;
       },
       error: (e) => console.error(e)
-    });
-    // console.log(data)
-    
+    });   
 }
+
+
 
 
 newTutorial(): void {

@@ -18,8 +18,8 @@ export class TodoServiceService {
 
   
 
-  getAlldone() {
-    return this.http.get(`${baseUrl}/published`);
+  getAlldone(): Observable<Tutorial[]>{
+    return this.http.get<Tutorial[]>(`${baseUrl}/published`);
   }
 
 

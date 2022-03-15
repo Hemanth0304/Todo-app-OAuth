@@ -8,7 +8,11 @@
       <label><strong>Description:</strong></label>
       {{ currentTutorial.description }}<br>
       <label><strong>Date:</strong></label>
-      {{ currentTutorial.today | date:'fullDate'}}
+      {{ currentTutorial.today | date:'fullDate'}}<br>
+
+      <label><strong>Days:</strong></label>
+      {{ currentTutorial.today | days}}
+
 
     </div>
     <div>

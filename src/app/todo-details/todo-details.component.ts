@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { observable } from 'rxjs';
 import { Tutorial } from '../models/tutorial.model';
 import { TodoServiceService } from '../service/todo-service.service';
 
@@ -9,6 +10,7 @@ import { TodoServiceService } from '../service/todo-service.service';
   styleUrls: ['./todo-details.component.css']
 })
 export class TodoDetailsComponent implements OnInit {
+  
 
 
   @Input() viewMode = false;
@@ -32,6 +34,9 @@ export class TodoDetailsComponent implements OnInit {
     }
   }
 
+  // time = new observable<string>((observer:Observer<string>)=>{
+  //   setInterval(()=> observer.next(new Date().toString()),1000);
+  // });
 
 
   getTutorial(id: string): void {

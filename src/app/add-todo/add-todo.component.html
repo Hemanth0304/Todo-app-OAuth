@@ -25,7 +25,9 @@
             style="border-radius: 20px;"
               type="text"
               formControlName="title"
+              
               class="form-control"
+              [formControl]="t"
               [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
             />
 
