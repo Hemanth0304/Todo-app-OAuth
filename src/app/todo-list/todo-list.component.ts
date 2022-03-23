@@ -5,6 +5,7 @@ import { Tutorial } from '../models/tutorial.model';
 import { OAuthService } from '../oauth.service';
 import { TodoServiceService } from '../service/todo-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { map, of } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -31,11 +32,14 @@ export class TodoListComponent implements OnInit {
   constructor( private active:ActivatedRoute,private serv:OAuthService,private todoservice : TodoServiceService,private router:Router) { }
 
   ngOnInit(): void {
+
+    
+    const data = of('Hemanth');
+    data.pipe(map(name =>name.toUpperCase())).subscribe(data => console.log(data));
+    
     if(!this.token){
 
       alert('You are not a Logged In user..... Please Login To Continue')
-
-     
 
     }
     this.retrieveTutorials();

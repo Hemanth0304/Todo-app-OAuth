@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { observable } from 'rxjs';
+import { map, observable, of } from 'rxjs';
 import { Tutorial } from '../models/tutorial.model';
 import { TodoServiceService } from '../service/todo-service.service';
 
@@ -32,7 +32,12 @@ export class TodoDetailsComponent implements OnInit {
       this.message = '';
       this.getTutorial(this.route.snapshot.params["id"]);
     }
+
+    const data = of('Hemanth');
+    data.pipe(map(name =>name.toUpperCase)).subscribe(data => console.log(data));
   }
+
+  
 
   // time = new observable<string>((observer:Observer<string>)=>{
   //   setInterval(()=> observer.next(new Date().toString()),1000);
