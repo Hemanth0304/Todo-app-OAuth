@@ -5,7 +5,7 @@ import { Tutorial } from '../models/tutorial.model';
 import { OAuthService } from '../oauth.service';
 import { TodoServiceService } from '../service/todo-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import { map, of } from 'rxjs';
+import { BehaviorSubject, map, of, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -33,6 +33,27 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    Subject 
+     const subject = new Subject();
+
+     subject.subscribe( d => console.log(`Subject Subscriber1 : ${d}`));
+
+     subject.next(2020);
+
+     subject.subscribe( d => console.log(`Subject Subscriber2 : ${d}`)); 
+
+
+   
+     const bSubject = new BehaviorSubject<number>(12);
+     bSubject.subscribe(d => console.log(`BehaviorSubject Subscriber1:  ${d}`));
+
+    bSubject.next(200);
+
+    bSubject.subscribe(d => console.log(`BehaviorSubject Subscriber2:  ${d}`));
+
+
+    
+
     
     const data = of('Hemanth');
     data.pipe(map(name =>name.toUpperCase())).subscribe(data => console.log(data));
@@ -59,16 +80,31 @@ add(){
 }
 
   retrieveTutorials(): void {
+
+   
     this.todoservice.getAll()
       .subscribe({
+        
         next: (data) => {
           this.tutorials = data;
           this.todo = data;
          
-          console.log(data);
+          console.log("Todo Data",data);
+         
         },
+       
         error: (e) => console.error(e)
+        
       });
+
+      
+     const bSubject = new BehaviorSubject<any>(0);
+     this.todoservice.getAll().subscribe(data => console.log("BehaviorSubject Todo data:",));
+
+    bSubject.next(200);
+
+    bSubject.subscribe(d => console.log(`BehaviorSubject Subscriber2:  ${d}`));
+
   }
 
   retrieveDoneTasks(): void {
