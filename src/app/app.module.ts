@@ -21,6 +21,11 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth.guard';
 import { UnsavedFormGuard } from './unsaved-form.guard';
 import { DaysPipe } from './Pipes/days.pipe';
+import { DoneComponentComponent } from './component/done-component/done-component.component';
+import { CatComponent } from './dynamic-component/cat/cat.component';
+import { DogComponent } from './dynamic-component/dog/dog.component';
+import { MemberItemComponent } from './dynamic-component/member-item/member-item.component';
+import { MemberListComponent } from './dynamic-component/member-list/member-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { DaysPipe } from './Pipes/days.pipe';
     ErrorComponent,
     NoSuchComponent,
     HomeComponent,
-    DaysPipe
+    DaysPipe,
+    DoneComponentComponent,
+    CatComponent,
+    DogComponent,
+    MemberItemComponent,
+    MemberListComponent
   ],
   imports: [
     BrowserModule,

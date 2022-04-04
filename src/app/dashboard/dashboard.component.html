@@ -2,8 +2,15 @@
 
 Welcome {{username}}
 
+
+<img src="{{avatar_url}}" width="50" height="60">
+
 <!-- <button (click)="logout()">Logout</button> -->
 
 <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
 
 <app-error></app-error>
+<div id="header">Pet List</div>
+<div id="content">
+  <app-member-list></app-member-list>
+</div>

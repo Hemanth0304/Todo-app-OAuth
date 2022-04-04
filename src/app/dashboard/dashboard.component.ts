@@ -1,3 +1,4 @@
+import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { OAuthService } from '../oauth.service';
@@ -12,10 +13,12 @@ export class DashboardComponent implements OnInit {
   constructor(private active:ActivatedRoute,private serv:OAuthService,private router:Router) { }
 
   username!: string;
+  avatar_url:any
 
   ngOnInit() {
       this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
-  }
+      this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.avatar_url=data["avatar_url"], error: err=>{console.log(err)}});
+    }
 
 logout()
 {

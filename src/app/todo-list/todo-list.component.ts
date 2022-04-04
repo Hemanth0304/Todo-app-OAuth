@@ -5,7 +5,7 @@ import { Tutorial } from '../models/tutorial.model';
 import { OAuthService } from '../oauth.service';
 import { TodoServiceService } from '../service/todo-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import { BehaviorSubject, map, of, Subject } from 'rxjs';
+import { BehaviorSubject, from, map, of, Subject, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -22,6 +22,7 @@ export class TodoListComponent implements OnInit {
   done:any;
   todo:any;
   username: any;
+  avatar_url: any;
   token= localStorage.getItem('Token')
 
 
@@ -52,6 +53,44 @@ export class TodoListComponent implements OnInit {
     bSubject.subscribe(d => console.log(`BehaviorSubject Subscriber2:  ${d}`));
 
 
+
+    from([20,15,10,5])
+
+    .pipe(
+
+      tap(item => console.log(`emitted item... ${item}`)),
+
+       map(item =>item*2),
+
+       map(item =>item-10),
+
+       map(item =>{
+
+         if(item === 0){
+
+         throw new Error('Zero detected');
+
+       }
+
+        return item;
+
+      }),
+
+       take(3)
+
+    )
+
+    .subscribe(
+
+      item=>console.log(`resulting item...${item}`),
+
+      err=>console.log(`error occured ${err}`),
+
+      ()=>console.log('completed')
+
+    )
+
+
     
 
     
@@ -65,16 +104,20 @@ export class TodoListComponent implements OnInit {
     }
     this.retrieveTutorials();
     this.retrieveDoneTasks();
-    this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
-  }
+     this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
+     this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.avatar_url=data["avatar_url"], error: err=>{console.log(err)}});
+
+     console.log();
+    }
 
 
   logout()
 {
   localStorage.clear();
   this.serv.logout().subscribe(data=>this.router.navigate(['/login']),err=>{console.log( err)});
-
 }
+
+
 add(){
   this.router.navigate(['/add'])
 }

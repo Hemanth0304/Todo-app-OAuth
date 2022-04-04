@@ -1,7 +1,7 @@
 <div class="header">
   <a href="#default" class="logo">TODO APP</a>
   <div class="header-right">
-    Welcome {{username}}
+    Welcome {{username}}<img src="{{avatar_url}}" width="50" height="60" style="border-radius:160px ;"> 
     <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
     <button type="button" class="btn btn-primary" (click)="add()">ADD Task</button>
    
@@ -11,45 +11,7 @@
 
 <div class="list row">
 
-    <!-- <div class="col-md-6">
-      <h4>Your To-do List</h4>
-      <ul class="list-group">
-        <div cdkDropList (cdkDropListDropped)="drop($event)" >
-        
-         <li 
-         cdkDrag
-          class="list-group-item"
-          *ngFor="let tutorial of todo; let i = index"
-          [class.active]="i == currentIndex"
-          (click)="setActiveTutorial(tutorial, i)">
-          {{ tutorial.title }}<br>
-          
-          
-        </li>
-      </div>
-        
-      </ul>
-    </div> -->
- 
-
-
-
-<!-- 
-  <div class="list row">
-  <div class="col-md-6">
-      <h4>Done </h4>
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          *ngFor="let d of done; let dt = index">
-          {{ d.title }}<br>
-          </li>
-        </ul>
-  </div> -->
-
-
-
-
+  
   <div class="example-container">
     <h2>Your To-do's</h2>
   
@@ -97,6 +59,14 @@
   
   </div>
   </div>
+
+  <!-- <div class="dynamic">
+    <button mat-raised-button color="primary">Done</button>
+    <button mat-raised-button color="primary">Pending</button>
+  </div>
+  <div> -->
+    <!-- <h1><ng-container *ngComponentOutlet="DoneComponent"></ng-container></h1> -->
+  <!-- </div> -->
  
 
   
