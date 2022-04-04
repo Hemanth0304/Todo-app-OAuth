@@ -29,6 +29,7 @@ getUserDetails(token: string | null)
 {
 return this.http.post(this.baseUrl+'/getUserDetails',{code:token});
 
+
 } 
 
 logout()
