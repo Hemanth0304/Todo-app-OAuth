@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
     }
 
 logout()
+
 {
   localStorage.clear();
   this.serv.logout().subscribe(data=>this.router.navigate(['/login']),err=>{console.log( err)});

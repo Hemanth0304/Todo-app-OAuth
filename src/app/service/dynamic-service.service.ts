@@ -10,51 +10,53 @@ export class DynamicServiceService {
 
   constructor() { }
   get members(): pets[] {
+
+    
     return [
       {
         name: 'Rex',
         age: 5,
-        IT: 'Central Park, New York',
+        IT: 'Software',
         profilePicture: 'assets/sereja-ris-zGyG2OyLu4k-unsplash.jpg',
       } as dog,
       {
         name: 'Max',
         age: 2,
-        IT: 'Treptower Park, Berlin',
+        IT: 'Software',
       } as dog,
       {
         name: 'Peanut',
         age: 1,
-        favoriteComfyPlace: 'Human bellies',
+        Accounts: 'account',
         profilePicture: 'assets/hang-niu-Tn8DLxwuDMA-unsplash.jpg',
       } as cat,
       {
         name: 'Noob',
         age: 3,
-        favoriteComfyPlace: 'Window side',
+        Accounts: 'account',
       } as cat,
       {
         name: 'Carabas',
         age: 7,
-        IT: 'Özgürlük, Istanbul',
+        IT: 'account',
         profilePicture: 'assets/jack-brind-rmvG_oHzCNA-unsplash.jpg',
       } as dog,
       {
         name: 'Tom',
         age: 4,
-        IT: 'Bois de Boulogne, Paris',
+        IT: 'account',
         profilePicture: 'assets/charles-zqhe4qjVTJI-unsplash.jpg',
       } as dog,
       {
         name: 'Mia',
         age: 2,
-        favoriteComfyPlace: 'Under the couch',
+        Accounts: 'account',
         profilePicture: 'assets/zoe-gayah-jonker-13ky5Ycf0ts-unsplash.jpg',
       } as cat,
       {
         name: 'Fitz',
         age: 4,
-        IT: 'Englisher Garten, Munich',
+        IT: 'account',
       } as dog,
     ];
   }
