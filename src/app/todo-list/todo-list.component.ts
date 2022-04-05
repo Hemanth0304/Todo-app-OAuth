@@ -23,7 +23,7 @@ export class TodoListComponent implements OnInit {
   todo:any;
   username: any;
   avatar_url: any;
-  token= localStorage.getItem('Token')
+  token = localStorage.getItem('Token')
 
 
 

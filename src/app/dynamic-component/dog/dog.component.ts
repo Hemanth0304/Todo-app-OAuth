@@ -8,7 +8,7 @@ import dog from 'src/app/models/dog';
   styleUrls: ['./dog.component.css']
 })
 export class DogComponent implements OnInit {
-  @Input() member: dog;
+  @Input() member : dog;
 
   constructor() { }
 

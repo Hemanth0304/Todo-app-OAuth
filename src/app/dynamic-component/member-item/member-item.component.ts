@@ -17,16 +17,19 @@ export class MemberItemComponent implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver,) { }
 
   ngOnInit(): void {
+
     this.viewContainerRef.clear();
     const cat = this.member as cat;
     const dog = this.member as dog;
 
 
-    if (cat.favoriteComfyPlace) {
+    if (cat.Accounts) {
       const catComponentFactory = this.componentFactoryResolver.resolveComponentFactory(CatComponent);
       const componentRef = this.viewContainerRef.createComponent(catComponentFactory);
       componentRef.instance.member = cat;
     } 
+
+
     else if (dog.IT) 
     {
       const dogComponentFactory = this.componentFactoryResolver.resolveComponentFactory(DogComponent);
@@ -34,6 +37,8 @@ export class MemberItemComponent implements OnInit {
       componentRef.instance.member = dog;
     }
   }
+
+
   }
 
 
