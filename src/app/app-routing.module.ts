@@ -25,7 +25,7 @@ canActivate:[AuthGuard]
 { path:'add',  canDeactivate:[UnsavedFormGuard],component: AddTodoComponent},
 
 
-{ path: '', component:HomeComponent},
+{ path: '', component:LoginComponent},
 
 {
   path:"login",

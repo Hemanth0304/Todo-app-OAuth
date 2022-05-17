@@ -18,7 +18,7 @@
     <div>
         
       <label><strong>Status:</strong></label>
-      {{ currentTutorial.Status ? "Done" : "Pending" }}
+      {{ currentTutorial.Status ? true : false }}
     </div>
 
     <a class="btn btn-warning" routerLink="/todo/{{ currentTutorial.id }}">Edit
@@ -66,7 +66,7 @@
 
       <div class="form-group">
         <label><strong>Status:</strong></label>
-        {{ currentTutorial.Status ? "Done" : "Pending" }}
+        {{ currentTutorial.Status ? "true" : "false" }}
       </div>
     </form>
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tutorial } from '../models/tutorial.model';
 
-const baseUrl = 'https://localhost:44340/Todo';
+const baseUrl = 'https://localhost:44340/api/Todo';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,13 @@ export class TodoServiceService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(baseUrl);
+    return this.http.get<Tutorial[]>(`${baseUrl}/GetTodo`);
   }
 
   
 
   getAlldone(): Observable<Tutorial[]>{
-    return this.http.get<Tutorial[]>(`${baseUrl}`);
+    return this.http.get<Tutorial[]>(`${baseUrl}/GetDone`);
     
   }
 
@@ -27,7 +27,7 @@ export class TodoServiceService {
   
 
   get(id: any): Observable<Tutorial> {
-    return this.http.get(`${baseUrl}`);
+    return this.http.get(`${baseUrl}/GetTask/${id}`);
   }
 
 
@@ -36,8 +36,8 @@ export class TodoServiceService {
     return this.http.post(baseUrl, data);
   }
 
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+  update(id: any, data): Observable<any> {
+    return this.http.put(`${baseUrl}/UpdateTask/${id}`, data);
   }
 
   delete(id: any): Observable<any> {

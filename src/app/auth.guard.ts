@@ -9,7 +9,7 @@ import { Router} from '@angular/router';
 
 export class AuthGuard implements CanActivate {
 
-  token= localStorage.getItem('Token')
+  token= localStorage.getItem('JWT')
 
   constructor(private router : Router){
 

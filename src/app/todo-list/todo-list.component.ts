@@ -23,7 +23,7 @@ export class TodoListComponent implements OnInit {
   todo:any;
   username: any;
   avatar_url: any;
-  token = localStorage.getItem('Token')
+  token = localStorage.getItem('JWT')
 
 
 
@@ -104,9 +104,8 @@ export class TodoListComponent implements OnInit {
     }
     this.retrieveTutorials();
     this.retrieveDoneTasks();
-    //  this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
-    //  this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.avatar_url=data["avatar_url"], error: err=>{console.log(err)}});
-
+    // this.serv.getUserDetails(localStorage.getItem('JWT')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
+    
      console.log();
     }
 
