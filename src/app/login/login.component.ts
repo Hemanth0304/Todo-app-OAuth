@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   login( form: NgForm)
   {
     const credentials ={
-      'userame': form.value.userame,
+      'username': form.value.username,
       'Password': form.value.Password
     }
     this.http.post("https://localhost:44340/api/auth/Todo", credentials)
@@ -32,9 +32,11 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("JWT",token);
       this.invalidLogin = false;
       this.router.navigate(['/todos']);
-    }, err => {
+    }, 
+    err => {
       this.invalidLogin =true;
     })
+    
     
     
 

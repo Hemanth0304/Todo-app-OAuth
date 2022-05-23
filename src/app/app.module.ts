@@ -9,6 +9,8 @@ import { AddTodoComponent } from './add-todo/add-todo.component';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {JwtModule} from '@auth0/angular-jwt';
+
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -26,6 +28,12 @@ import { CatComponent } from './dynamic-component/cat/cat.component';
 import { DogComponent } from './dynamic-component/dog/dog.component';
 import { MemberItemComponent } from './dynamic-component/member-item/member-item.component';
 import { MemberListComponent } from './dynamic-component/member-list/member-list.component';
+import { RegisterComponent } from './account/register/register.component';
+import { RouterModule } from '@angular/router';
+
+export function tokenGetter(){
+  return localStorage.getItem("JWT")
+}
 
 @NgModule({
   declarations: [
@@ -44,7 +52,8 @@ import { MemberListComponent } from './dynamic-component/member-list/member-list
     CatComponent,
     DogComponent,
     MemberItemComponent,
-    MemberListComponent
+    MemberListComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +61,19 @@ import { MemberListComponent } from './dynamic-component/member-list/member-list
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    RouterModule.forRoot([
+      { path: 'todos', component:TodoListComponent},
+      { path: 'login', component:LoginComponent},
+     
+  ]),
+    JwtModule.forRoot({
+      config:{
+        tokenGetter: tokenGetter,
+        allowedDomains:["localhost:44340"],
+        disallowedRoutes:[]
+      }
+    })
   
   ],
   providers: [{provide:HTTP_INTERCEPTORS,

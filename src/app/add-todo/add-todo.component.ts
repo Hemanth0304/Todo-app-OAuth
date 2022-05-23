@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tutorial } from '../models/tutorial.model';
+import { Task } from '../models/Task.model';
 import { TodoServiceService } from '../service/todo-service.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
@@ -16,7 +16,7 @@ import { SaveData } from '../save.interface';
 export class AddTodoComponent implements OnInit,canComponentLeave, SaveData {
  
   today: Date = new Date();
-  tutorial: Tutorial = {
+  tutorial: Task = {
      title: '',
     description: '',
     today:this.today,

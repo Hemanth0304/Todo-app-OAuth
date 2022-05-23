@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './account/register/register.component';
 import { AddTodoComponent } from './add-todo/add-todo.component';
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,6 +27,9 @@ canActivate:[AuthGuard]
 
 
 { path: '', component:LoginComponent},
+
+{ path: 'register', component:RegisterComponent},
+
 
 {
   path:"login",

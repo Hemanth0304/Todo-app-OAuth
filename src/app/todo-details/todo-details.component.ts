@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, observable, of } from 'rxjs';
-import { Tutorial } from '../models/tutorial.model';
+import { Task } from '../models/Task.model';
 import { TodoServiceService } from '../service/todo-service.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class TodoDetailsComponent implements OnInit {
 
   @Input() viewMode = false;
 
-  @Input() currentTutorial: Tutorial = {
+  @Input() currentTutorial: Task = {
     title: '',
     description: '',
     Status: false

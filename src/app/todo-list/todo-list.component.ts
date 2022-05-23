@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 
-import { Tutorial } from '../models/tutorial.model';
+import { Task } from '../models/Task.model';
 import { OAuthService } from '../oauth.service';
 import { TodoServiceService } from '../service/todo-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,8 +14,8 @@ import { BehaviorSubject, from, map, of, Subject, take, tap } from 'rxjs';
 })
 export class TodoListComponent implements OnInit {
 
-  tutorials?: Tutorial[];
-  currentTutorial: Tutorial = {};
+  tasks?: Task[];
+  currentTask: Task = {};
   currentIndex = -1;
   title = '';
 
@@ -128,7 +128,7 @@ add(){
       .subscribe({
         
         next: (data) => {
-          this.tutorials = data;
+          this.tasks = data;
           this.todo = data;
          
           console.log("Todo Data",data);
@@ -163,13 +163,13 @@ add(){
 
   refreshList(): void {
     this.retrieveTutorials();
-    this.currentTutorial = {};
+    this.currentTask = {};
     this.currentIndex = -1;
   }
 
 
-  setActiveTutorial(tutorial: Tutorial, index: number): void {
-    this.currentTutorial = tutorial;
+  setActiveTutorial(tutorial: Task, index: number): void {
+    this.currentTask = tutorial;
     this.currentIndex = index;
   }
 
@@ -231,16 +231,16 @@ add(){
 
   updatePublished(status: boolean): void {
     const data = {
-      title: this.currentTutorial.title,
-      description: this.currentTutorial.description,
+      title: this.currentTask.title,
+      description: this.currentTask.description,
       Status: status
     };
 
-    this.todoservice.update(this.currentTutorial.id, data)
+    this.todoservice.update(this.currentTask.id, data)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.currentTutorial.Status = status;
+          this.currentTask.Status = status;
         },
         error: (e) => console.error(e)
       });
