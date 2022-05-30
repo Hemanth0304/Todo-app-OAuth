@@ -30,6 +30,9 @@ import { MemberItemComponent } from './dynamic-component/member-item/member-item
 import { MemberListComponent } from './dynamic-component/member-list/member-list.component';
 import { RegisterComponent } from './account/register/register.component';
 import { RouterModule } from '@angular/router';
+import { AdminLoginComponent } from './account/admin-login/admin-login.component';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 export function tokenGetter(){
   return localStorage.getItem("JWT")
@@ -53,7 +56,8 @@ export function tokenGetter(){
     DogComponent,
     MemberItemComponent,
     MemberListComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,8 @@ export function tokenGetter(){
     HttpClientModule,
     ReactiveFormsModule,
     DragDropModule,
+    FormlyBootstrapModule,
+    FormlyModule.forRoot(),
     RouterModule.forRoot([
       { path: 'todos', component:TodoListComponent},
       { path: 'login', component:LoginComponent},

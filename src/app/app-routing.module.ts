@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminLoginComponent } from './account/admin-login/admin-login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { AddTodoComponent } from './add-todo/add-todo.component';
 import { AuthGuard } from './auth.guard';
@@ -41,6 +42,10 @@ canActivate:[AuthGuard]
   component:DashboardComponent
 },
 {
+  path:'admin-login',
+  component:AdminLoginComponent
+  },
+{
   path:'login',
   component:LoginComponent
 },
@@ -59,6 +64,8 @@ component:RedirectComponent
 path:'**',
 component:NoSuchComponent
 },
+
+
 
 
 
